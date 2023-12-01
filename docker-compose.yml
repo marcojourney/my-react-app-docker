@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  react-app:
+    image: my-react-app
+    ports:
+      - "8000:80"
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+networks:
+  frontend:
+    driver: overlay
